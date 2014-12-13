@@ -4,23 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Lyric Ipsum</title>
 	<style>
-		@import url(//fonts.googleapis.com/css?family=Lato:700);
+		@import url(//fonts.googleapis.com/css?family=Lato:400,700);
 
 		body {
 			margin:0;
 			font-family:'Lato', sans-serif;
-			text-align:center;
 			color: #999;
-		}
-
-		.welcome {
-			width: 300px;
-			height: 200px;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			margin-left: -150px;
-			margin-top: -100px;
 		}
 
 		a, a:visited {
@@ -28,15 +17,29 @@
 		}
 
 		h1 {
+			text-align:center;
 			font-size: 32px;
 			margin: 16px 0 0 0;
+			font-weight: 700;
 		}
+
+		#lyrics {
+			text-align:left;
+			font-weight: 400;
+			font-size: 18px;
+			width: 600px;
+			margin: 0 auto;
+		}
+
 	</style>
 </head>
 <body>
 
-	<h1>Lyric Ipsum</h1>
+	<header>
+		<h1>Lyric Ipsum</h1>
+	</header>
 
 	@yield('content')
+
 </body>
 </html>

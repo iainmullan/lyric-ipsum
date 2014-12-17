@@ -44,7 +44,8 @@ class LyricsController extends BaseController {
 		$paras = array_slice($paras, 0, 5);
 
 		return View::make('lyrics', array(
-			'paras' => $paras
+			'paras' => $paras,
+			'spotifyIds' => $spotifyIds
 		));
 
 	}

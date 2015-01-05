@@ -1,7 +1,7 @@
 
 #Lyric Ipsum
 
-Generate Lorem Ipsum test with song lyrics. Obviously.
+Generate Lorem Ipsum text from song lyrics. Obviously.
 
 For Music Hack Day London 2014
 

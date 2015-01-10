@@ -1,0 +1,3 @@
+[submodule "deploy/workbench/iainmullan/musixmatch"]
+	path = deploy/workbench/iainmullan/musixmatch
+	url = git@github.com:iainmullan/musixmatch-php.git

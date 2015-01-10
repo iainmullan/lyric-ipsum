@@ -60,9 +60,10 @@
 
 		#search input[type=text] {
 			font-size: 2em;
-			border: 1px solid #999;
+			border: 1px solid #ccc;
 			width: 75%;
 			min-width: 300px;
+			max-width: 600px;
 		}
 		#search input[type=submit] {
 			border: none;
@@ -70,13 +71,18 @@
 			background: #eee;
 		}
 
+		#lyrics, #playlist {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
 		#lyrics {
 			text-align:left;
 			font-weight: 400;
 			font-size: 1.3em;
-			max-width: 600px;
-			margin: 0 auto;
+			margin-bottom: 50px;
 		}
+
 		.twitter-follow-button {
 			display: block;
 			width: 158px;

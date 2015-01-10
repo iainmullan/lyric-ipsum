@@ -85,7 +85,8 @@
 
 	<footer>
 		by <a href="http://iainmullan.com">Iain Mullan</a>
-		at <a href="http://musichackday.org/">Music Hack Day</a> London 2014
+		at <a href="http://musichackday.org/" target="_blank">Music Hack Day</a> London 2014
+		with the help of <a href="https://developer.musixmatch.com/" target="_blank">musixmatch</a>
 	</footer>
 
 </body>

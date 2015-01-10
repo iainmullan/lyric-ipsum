@@ -1,15 +1,16 @@
 <?php
 
+use Iainmullan\Musixmatch\Musixmatch;
+
 class LyricsController extends BaseController {
 
 	function get() {
 
-		$artist = Input::get('artist', 'Oasis');
+		$artist = Input::get('artist', 'The White Stripes');
 
-		require app_path().'/library/musixmatch/src/musixmatch.php';
+		$musix = new Musixmatch(Config::get('lyrics.musixmatch.api_key'));
 
-		$musix = new MusicXMatch(Config::get('lyrics.musixmatch.api_key'));
-    	$result = $musix->method('track.search')->param_q_artist($artist)->execute_request();
+    	$result = $musix->method('track.search', array('q_artist' => $artist));
 
     	$tracks = $result['track_list'];
 
@@ -25,7 +26,7 @@ class LyricsController extends BaseController {
          	$trackId = $track['track']['track_id'];
          	$spotifyIds[] = $track['track']['track_spotify_id'];
 
-	    	$t = $musix->method('track.lyrics.get')->param('track_id', $trackId)->execute_request();
+	    	$t = $musix->method('track.lyrics.get', array('track_id' => $trackId));
 
 	    	$body = $t['lyrics']['lyrics_body'];
 
@@ -44,6 +45,7 @@ class LyricsController extends BaseController {
 		$paras = array_slice($paras, 0, 5);
 
 		return View::make('lyrics', array(
+			'artist' => $artist,
 			'paras' => $paras,
 			'spotifyIds' => $spotifyIds
 		));

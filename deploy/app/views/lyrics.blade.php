@@ -2,10 +2,7 @@
 
 @section('content')
 
-	<form action="/get">
-		<input name="artist" placeholder="Enter artist name..." />
-		<input type="submit" />
-	</form>
+	@include('elements.search', array('value' => $artist))
 
 	<div id="lyrics">
 		@foreach($paras as $p)

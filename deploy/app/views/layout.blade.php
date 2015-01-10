@@ -9,11 +9,11 @@
 		body {
 			margin:0;
 			font-family:'Lato', sans-serif;
-			color: #999;
+			color: #444;
 		}
 
 		a, a:visited {
-			text-decoration:none;
+			color: inherit;
 		}
 
 		h1 {
@@ -23,11 +23,51 @@
 			font-weight: 700;
 		}
 
+		h1 a {
+			text-decoration:none;
+		}
+
+		header, main, footer {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		#search, footer {
+			text-align: center;
+		}
+		footer {
+			margin-top: 100px;
+		}
+
+		p.tagline {
+			text-align:center;
+			margin: 30px 0;
+		}
+
+		#search input {
+			padding: 5px 10px;
+			height: 40px;
+			margin: 10px 0;
+		}
+
+		#search input[type=text] {
+			font-size: 2em;
+			border: 1px solid #999;
+			width: 75%;
+			min-width: 300px;
+		}
+		#search input[type=submit] {
+			border: none;
+			font-size: 1em;
+			background: #eee;
+		}
+
 		#lyrics {
 			text-align:left;
 			font-weight: 400;
-			font-size: 18px;
-			width: 600px;
+			font-size: 1.3em;
+			max-width: 600px;
 			margin: 0 auto;
 		}
 
@@ -36,10 +76,17 @@
 <body>
 
 	<header>
-		<h1>Lyric Ipsum</h1>
+		<h1><a href="/">Lyric Ipsum</a></h1>
 	</header>
 
-	@yield('content')
+	<main>
+		@yield('content')
+	</main>
+
+	<footer>
+		by <a href="http://iainmullan.com">Iain Mullan</a>
+		at <a href="http://musichackday.org/">Music Hack Day</a> London 2014
+	</footer>
 
 </body>
 </html>

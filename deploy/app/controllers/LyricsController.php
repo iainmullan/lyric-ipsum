@@ -8,7 +8,11 @@ class LyricsController extends BaseController {
 
 		$artist = Input::get('artist', 'The White Stripes');
 
-		$musix = new Musixmatch(Config::get('lyrics.musixmatch.api_key'));
+		$musix = new Musixmatch(
+			Config::get('lyrics.musixmatch.api_key'),
+			storage_path().'/cache/musixmatch',
+			60 * 60 * 24 * 7
+		);
 
     	$result = $musix->method('track.search', array('q_artist' => $artist));
 

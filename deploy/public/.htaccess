@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^www.lyricipsum.com
+    RewriteRule (.*) http://lyricipsum.com/$1 [R=301,L]
+
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 

@@ -2,59 +2,61 @@
 
 use Iainmullan\Musixmatch\Musixmatch;
 
-class LyricsController extends BaseController {
+class LyricsController extends BaseController
+{
 
-	function get() {
+    function get()
+    {
 
-		$artist = Input::get('artist', 'The White Stripes');
+        $artist = Input::get('artist', 'The White Stripes');
 
-		$musix = new Musixmatch(
-			Config::get('lyrics.musixmatch.api_key'),
-			storage_path().'/cache/musixmatch',
-			60 * 60 * 24 * 7
-		);
+        $musix = new Musixmatch(
+            Config::get('lyrics.musixmatch.api_key'),
+            storage_path().'/cache/musixmatch',
+            60 * 60 * 24 * 7
+        );
 
-    	$result = $musix->method('track.search', array('q_artist' => $artist));
+        $result = $musix->method('track.search', array('q_artist' => $artist));
 
-    	$tracks = $result['track_list'];
+        $tracks = $result['track_list'];
 
-    	// choose 5 songs at random
-		shuffle($tracks);
-    	$tracks = array_slice($tracks, 0, 5);
+        // choose 5 songs at random
+        shuffle($tracks);
+        $tracks = array_slice($tracks, 0, 5);
 
-    	$allLines = [];
+        $allLines = [];
 
-    	$spotifyIds = [];
+        $spotifyIds = [];
         foreach ($tracks as $track) {
-         	
-         	$trackId = $track['track']['track_id'];
-         	$spotifyIds[] = $track['track']['track_spotify_id'];
 
-	    	$t = $musix->method('track.lyrics.get', array('track_id' => $trackId));
+            $trackId = $track['track']['track_id'];
+            $spotifyIds[] = $track['track']['track_spotify_id'];
 
-	    	$body = $t['lyrics']['lyrics_body'];
+            $t = $musix->method('track.lyrics.get', array('track_id' => $trackId));
 
-	    	$lines = explode("\n", $body);
+            $body = $t['lyrics']['lyrics_body'];
 
-	    	$lines = preg_grep('/\*/', $lines, PREG_GREP_INVERT);
-	    	$lines = preg_grep('/^[\W]*$/', $lines, PREG_GREP_INVERT);
+            $lines = explode("\n", $body);
 
-	    	$lines = array_filter($lines);
+            $lines = preg_grep('/\*/', $lines, PREG_GREP_INVERT);
+            $lines = preg_grep('/^[\W]*$/', $lines, PREG_GREP_INVERT);
 
-	    	$allLines = array_merge($allLines, $lines);
+            $lines = array_filter($lines);
+
+            $allLines = array_merge($allLines, $lines);
         }
 
         shuffle($allLines);
-		$paras = array_chunk($allLines, 15);
-		$paras = array_slice($paras, 0, 5);
+        $paras = array_chunk($allLines, 15);
+        $paras = array_slice($paras, 0, 5);
 
-		return View::make('lyrics', array(
-			'artist' => $artist,
-			'paras' => $paras,
-			'spotifyIds' => $spotifyIds
-		));
+        return View::make('lyrics', array(
+            'artist' => $artist,
+            'paras' => $paras,
+            'spotifyIds' => $spotifyIds
+        ));
 
-	}
+    }
 
 
 }
